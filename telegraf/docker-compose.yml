@@ -1,0 +1,9 @@
+version: "3.8"
+
+services:
+  telegraf:
+    image: telegraf:1.36.2
+    container_name: telegraf
+    volumes:
+      - /home/nali/docker/telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
+    restart: unless-stopped

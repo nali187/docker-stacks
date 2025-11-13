@@ -1,0 +1,21 @@
+services:
+  adguard:
+    image: adguard/adguardhome:latest
+    container_name: adguard
+    networks:
+      vlan50_macvlan:
+        ipv4_address: 192.168.50.54
+    restart: unless-stopped
+    environment:
+      TZ: Europe/Vienna
+    volumes:
+      - adguard_conf:/opt/adguardhome/conf
+      - adguard_work:/opt/adguardhome/work
+
+networks:
+  vlan50_macvlan:
+    external: true
+
+volumes:
+  adguard_conf: {}
+  adguard_work: {}
