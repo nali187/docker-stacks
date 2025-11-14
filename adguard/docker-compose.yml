@@ -9,8 +9,8 @@ services:
     environment:
       TZ: Europe/Vienna
     volumes:
-      - adguard_conf:/opt/adguardhome/conf
-      - adguard_work:/opt/adguardhome/work
+      - /srv/docker/adguard/conf:/opt/adguardhome/conf
+      - /srv/docker/adguard/work:/opt/adguardhome/work
 
 networks:
   vlan50_macvlan:
