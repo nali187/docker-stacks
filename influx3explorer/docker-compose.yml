@@ -15,4 +15,5 @@ services:
       - /data/influxdb3/explorer/db:/db:rw
       - /data/influxdb3/explorer/config:/app-root/config:ro
       - /data/influxdb3/explorer/ssl:/etc/nginx/ssl:ro
+      - /data/influxdb3/explorer/ca-certs:/ca-certs:rw
     restart: unless-stopped
