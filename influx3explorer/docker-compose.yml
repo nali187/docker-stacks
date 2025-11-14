@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   influxdb3-explorer:
-    image: influxdata/influxdb3-ui:1.3.0
+    image: influxdata/influxdb3-ui:latest
     container_name: influxdb3-explorer
     # Admin mode (full UI). Omit the command for read-only Query mode.
     command: ["--mode=admin"]
