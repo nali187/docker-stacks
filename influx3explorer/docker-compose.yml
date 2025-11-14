@@ -12,6 +12,8 @@ services:
       # Use a long random string. Example (run on host): openssl rand -hex 32
       SESSION_SECRET_KEY: ${key}
     volumes:
-      - /data/influxdb3/explorer/db:/db:rw            # persist Explorer's SQLite data
-      - /data/influxdb3/explorer/config:/app-root/config:ro  # (optional) custom config dir
+      - explorer-db:/db
     restart: unless-stopped
+
+volumes:
+  explorer-db:
