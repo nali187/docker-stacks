@@ -10,6 +10,7 @@ services:
       - PGID=1000           # GID of user 'nali'
       - TZ=Europe/Vienna
       - SETTINGS_ENCRYPTION_KEY=${KEY}
+      - CLI_ARGS=--webservice-interface=0.0.0.0 --webservice-port=8200 --webservice-password=${PASS}
     ports:
       - "8200:8200"         # Web UI
     volumes:
