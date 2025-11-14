@@ -10,8 +10,6 @@ services:
     volumes:
       - influxdb2_lib_data:/var/lib/influxdb2
       - influxdb2_etc_data:/etc/influxdb2
-      # Keep if you still want this inside the container
-      - /home/nali/backup:/backup:ro
 
 volumes:
   influxdb2_lib_data:
