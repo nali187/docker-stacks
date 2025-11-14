@@ -9,6 +9,7 @@ services:
       - PUID=1000           # UID of user 'nali' (check with: id nali)
       - PGID=1000           # GID of user 'nali'
       - TZ=Europe/Vienna
+      - SETTINGS_ENCRYPTION_KEY=${KEY}
     ports:
       - "8200:8200"         # Web UI
     volumes:
