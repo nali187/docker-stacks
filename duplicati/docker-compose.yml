@@ -6,25 +6,17 @@ services:
     container_name: duplicati
     restart: unless-stopped
     environment:
-      - PUID=1000           # adjust if your Docker user is different
-      - PGID=1000
+      - PUID=1000           # UID of user 'nali' (check with: id nali)
+      - PGID=1000           # GID of user 'nali'
       - TZ=Europe/Vienna
     ports:
       - "8200:8200"         # Web UI
     volumes:
-      # Duplicati config (its own DB, settings, jobs)
+      # Duplicati's own config & job database
       - /opt/duplicati/config:/config
 
-      # Things to back up (examples – ADJUST to your real paths):
+      # ALL your Docker data, now centralized
+      - /srv/docker:/source/docker_all
 
-      # Portainer /data (so stacks/env/endpoint config survive)
-      - /opt/portainer:/source/portainer      # <<< adjust if yours is elsewhere
-
-      # InfluxDB data (example volume path)
-      - /var/lib/docker/volumes/influxdb2_data/_data:/source/influxdb2  # <<< check your volume path
-
-      # Grafana data (example)
-      - /var/lib/docker/volumes/grafana_data/_data:/source/grafana      # <<< check your volume path
-
-      # Backup destination on your host (e.g. NAS share mounted here)
-      - /mnt/backup/duplicati:/backups        # <<< mount your NAS here on the host
+      # Backup destination on your NAS (already mounted by your script/fstab)
+      - /mnt/nas-backup/raspberry-backup/duplicati:/backups
