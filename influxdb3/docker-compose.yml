@@ -16,12 +16,8 @@ services:
       - "8181:8181"
     user: 1000:1000
     volumes:
-      - type: bind
-        source: /data/influxdb3/core/data
-        target: /var/lib/influxdb3/data
-      - type: bind
-        source: /data/influxdb3/core/plugins
-        target: /var/lib/influxdb3/plugins
+      - /srv/docker/influxdb3/core/data:/var/lib/influxdb3/data
+      - /srv/docker/influxdb3/core/plugins:/var/lib/influxdb3/plugins
     restart: unless-stopped
     labels:
       com.centurylinklabs.watchtower.enable: "true"
