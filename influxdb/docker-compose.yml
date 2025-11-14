@@ -8,13 +8,5 @@ services:
     ports:
       - "8086:8086"
     volumes:
-      - influxdb2_lib_data:/var/lib/influxdb2
-      - influxdb2_etc_data:/etc/influxdb2
-
-volumes:
-  influxdb2_lib_data:
-    external: true
-    name: influxdb2_lib_data
-  influxdb2_etc_data:
-    external: true
-    name: influxdb2_etc_data
+      - /srv/docker/influxdb2/lib:/var/lib/influxdb2
+      - /srv/docker/influxdb2/etc:/etc/influxdb2
