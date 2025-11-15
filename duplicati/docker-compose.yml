@@ -12,7 +12,7 @@ services:
     ports:
       - "8200:8200"         # Web UI
     volumes:
-      - /opt/duplicati/config:/config
+      - /srv/docker/duplicati/config:/config
       - /srv/docker:/source
       - /mnt/nas-backup/raspberry-backup/duplicati:/backups
       - /var/run/docker.sock:/var/run/docker.sock
