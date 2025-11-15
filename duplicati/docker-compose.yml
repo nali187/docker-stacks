@@ -18,5 +18,3 @@ services:
       # Give Duplicati access to host Docker
       - /usr/bin/docker:/usr/bin/docker
       - /var/run/docker.sock:/var/run/docker.sock
-    group_add:
-      - "989"
