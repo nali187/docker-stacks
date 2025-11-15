@@ -15,4 +15,6 @@ services:
       - /srv/docker/duplicati/config:/config
       - /srv/docker:/source
       - /mnt/nas-backup/raspberry-backup/duplicati:/backups
+      # Give Duplicati access to host Docker
+      - /usr/bin/docker:/usr/bin/docker
       - /var/run/docker.sock:/var/run/docker.sock
