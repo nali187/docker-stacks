@@ -16,7 +16,7 @@ services:
       - /opt/duplicati/config:/config
 
       # ALL your Docker data, now centralized
-      - /srv/docker:/source/docker_all
+      - /srv/docker:/source
 
       # Backup destination on your NAS (already mounted by your script/fstab)
       - /mnt/nas-backup/raspberry-backup/duplicati:/backups
