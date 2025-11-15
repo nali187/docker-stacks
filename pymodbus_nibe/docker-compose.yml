@@ -33,6 +33,12 @@ services:
       - CORE_STARTUP_RAMP_SEC=120               # globaler sanfter Hochlauf
       - CORE_SETPOINT_OFFSET_C=0.0              # Feinversatz Soll
 
+      # PID
+      - PID_KP=2.0
+      - PID_KI=0.05
+      - PID_KD=0.3
+      - PID_AW_TAU_SEC=120
+
       # Logging
       - LOG_LEVEL=INFO
       - LOG_ENABLE_JSON=1
