@@ -12,11 +12,7 @@ services:
     ports:
       - "8200:8200"         # Web UI
     volumes:
-      # Duplicati's own config & job database
       - /opt/duplicati/config:/config
-
-      # ALL your Docker data, now centralized
       - /srv/docker:/source
-
-      # Backup destination on your NAS (already mounted by your script/fstab)
       - /mnt/nas-backup/raspberry-backup/duplicati:/backups
+      - /var/run/docker.sock:/var/run/docker.sock
