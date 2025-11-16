@@ -6,13 +6,16 @@ services:
     privileged: true
     volumes:
       - /srv/docker:/srv/docker
+      - /var/run/docker.sock:/var/run/docker.sock
     command: >
-     sh -c "
+      sh -c "
       apk add --no-cache acl &&
-     echo '[ACL FIXER] Applying ACLs...' &&
-     setfacl -R -m u:1000:rx /srv/docker &&
-     setfacl -R -d -m u:1000:rx /srv/docker &&
+      echo '[ACL FIXER] Applying ACLs on /srv/docker...' &&
+      setfacl -R -m u:1000:rx /srv/docker &&
+      setfacl -R -d -m u:1000:rx /srv/docker &&
+      echo '[ACL FIXER] Fixing docker.sock permissions...' &&
+      setfacl -m u:1000:rw /var/run/docker.sock &&
       echo '[ACL FIXER] Done. Now idling...' &&
-     tail -f /dev/null
-     "
+      tail -f /dev/null
+      "
     restart: unless-stopped
