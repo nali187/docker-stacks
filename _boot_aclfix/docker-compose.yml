@@ -1,0 +1,17 @@
+services:
+  aclfixer:
+    container_name: aclfixer
+    image: alpine:latest
+    user: root
+    privileged: true
+    volumes:
+      - /srv/docker:/srv/docker
+      - /usr/bin/setfacl:/usr/bin/setfacl
+    command: >
+      sh -c "
+      echo '[ACL FIXER] Applying ACLs...' &&
+      setfacl -R -m u:1000:rx /srv/docker &&
+      setfacl -R -d -m u:1000:rx /srv/docker &&
+      echo '[ACL FIXER] Done.'
+      "
+    restart: "no"
