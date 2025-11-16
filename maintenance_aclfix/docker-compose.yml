@@ -1,14 +1,15 @@
 services:
   aclfixer:
-    container_name: aclfixer
+    container_name: maintenance_aclfixer
     image: alpine:latest
     user: root
     privileged: true
     volumes:
       - /srv/docker:/srv/docker
-      - /usr/bin/setfacl:/usr/bin/setfacl
     command: >
       sh -c "
+      echo '[ACL FIXER] Installing acl tools...' &&
+      apk add --no-cache acl &&
       echo '[ACL FIXER] Applying ACLs...' &&
       setfacl -R -m u:1000:rx /srv/docker &&
       setfacl -R -d -m u:1000:rx /srv/docker &&
