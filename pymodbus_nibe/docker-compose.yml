@@ -22,9 +22,9 @@ services:
 
       - CORE_MIN_CAP_HZ=25                      # untere Hz-Grenze
       - CORE_MAX_CAP_HZ=85                      # obere Hz-Grenze
-      - CORE_EMA_TAU_FLOW_SEC=90                # EMA-Zeitkonstante Vorlauf
+      - CORE_EMA_TAU_FLOW_SEC=1                 # EMA-Zeitkonstante Vorlauf
       - CORE_DEADBAND_DELTA_K=0.5               # Totband ±K
-      - CORE_STEP_UP_HZ=1                       # max +Hz je Takt
+      - CORE_STEP_UP_HZ=2                       # max +Hz je Takt
       - CORE_STEP_DOWN_HZ=2                     # max -Hz je Takt
       - CORE_STEP_UP_DHW_HZ=10                  # schneller rauf im DHW
       - CORE_STEP_DOWN_AFTER_DHW_HZ=10          # schneller runter im DHW
@@ -33,10 +33,10 @@ services:
       - CORE_SETPOINT_OFFSET_C=0.0              # Feinversatz Soll
 
       # PID
-      - PID_KP=2.0
-      - PID_KI=0.05
+      - PID_KP=3.0
+      - PID_KI=0.01
       - PID_KD=0.3
-      - PID_AW_TAU_SEC=120
+      - PID_AW_TAU_SEC=60
 
       # Logging
       - LOG_LEVEL=INFO
