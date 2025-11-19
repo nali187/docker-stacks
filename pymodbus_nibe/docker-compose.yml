@@ -51,12 +51,6 @@ services:
 
       # ---------------- DEFROST ----------------
       - DEFROST_ENABLE=1                        # Block aktivieren/deaktivieren
-      - DEFROST_COOLDOWN_SEC=600                # Cooldown nach Defrost
-      - DEFROST_COOLDOWN_STEP_UP_HZ=1           # Schrittweite während Cooldown
-      - DEFROST_HOLD_MAX_SEC=600                # max HOLD-Dauer
-      - DEFROST_HOLD_CAP_HZ=25                  # Cap während HOLD
-      - DEFROST_HOLD_RELEASE_DELTA_K=1.2        # Release-Bedingung (EMA ≥ Soll−ΔK)
-      - DEFROST_HOLD_BYPASS_WHEN_DHW=true       # HOLD im DHW lockern
 
       # ---------------- SOLARLOCK ----------------
       - SOLARLOCK_ENABLE=true                   # Block aktivieren/deaktivieren
@@ -68,7 +62,6 @@ services:
       # ---------------- SMO40 / OFF ----------------
       - SMO40_ENABLE=true                       # Block aktivieren/deaktivieren
       - SMO40_SUSPEND_WRITES_WHEN_OFF=true      # im OFF keine Writes
-
       - SMO40_STARTUP_AFTER_OFF_SEC=180         # sanfter Start nach OFF
       - SMO40_KI_ZERO_AFTER_OFF_SEC=180         # I-Anteil für X s = 0
       - SMO40_KP_SCALE_DURING_STARTUP=0.7       # P-Anteil reduziert im Startfenster
