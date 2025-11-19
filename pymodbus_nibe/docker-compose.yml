@@ -20,7 +20,7 @@ services:
       - REG_STATUS=1028                         # Betriebsstatus (10=OFF,20=DHW,30=HEAT)
       - REG_COMPRESSOR_HZ=1803                  # Kompressor-Frequenz Ist
 
-      - CORE_MIN_CAP_HZ=30                      # untere Hz-Grenze
+      - CORE_MIN_CAP_HZ=25                      # untere Hz-Grenze
       - CORE_MAX_CAP_HZ=85                      # obere Hz-Grenze
       - CORE_EMA_TAU_FLOW_SEC=1                 # EMA-Zeitkonstante Vorlauf
       - CORE_DEADBAND_DELTA_K=0.5               # Totband ±K
