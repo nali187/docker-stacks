@@ -22,10 +22,8 @@ services:
 
       - CORE_MIN_CAP_HZ=25                      # untere Hz-Grenze
       - CORE_MAX_CAP_HZ=85                      # obere Hz-Grenze
-      - CORE_EMA_TAU_FLOW_SEC=0                 # EMA-Zeitkonstante Vorlauf
-      - CORE_DEADBAND_DELTA_K=0.5               # Totband ±K
-      - CORE_STEP_UP_HZ=2                       # max +Hz je Takt
-      - CORE_STEP_DOWN_HZ=2                     # max -Hz je Takt
+      - CORE_STEP_UP_HZ=3                       # max +Hz je Takt
+      - CORE_STEP_DOWN_HZ=3                     # max -Hz je Takt
       - CORE_STEP_UP_DHW_HZ=10                  # schneller rauf im DHW
       - CORE_STEP_DOWN_AFTER_DHW_HZ=10          # schneller runter im DHW
       - CORE_POST_DHW_WINDOW_SEC=180            # Zeitspanne für schneller runter in DHW
@@ -34,9 +32,9 @@ services:
 
       # PID
       - PID_KP=3.0
-      - PID_KI=0.02
+      - PID_KI=0.015
       - PID_KD=0.3
-      - PID_AW_TAU_SEC=40
+      - PID_AW_TAU_SEC=25
       - PID_I_CLAMP=20
 
       # Logging
@@ -62,8 +60,8 @@ services:
       # ---------------- SMO40 / OFF ----------------
       - SMO40_ENABLE=true                       # Block aktivieren/deaktivieren
       - SMO40_SUSPEND_WRITES_WHEN_OFF=true      # im OFF keine Writes
-      - SMO40_STARTUP_AFTER_OFF_SEC=180         # sanfter Start nach OFF
-      - SMO40_KI_ZERO_AFTER_OFF_SEC=180         # I-Anteil für X s = 0
+      - SMO40_STARTUP_AFTER_OFF_SEC=600         # sanfter Start nach OFF
+      - SMO40_KI_ZERO_AFTER_OFF_SEC=600         # I-Anteil für X s = 0
       - SMO40_KP_SCALE_DURING_STARTUP=0.7       # P-Anteil reduziert im Startfenster
 
     volumes:
