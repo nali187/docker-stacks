@@ -29,6 +29,8 @@ services:
       - CORE_POST_DHW_WINDOW_SEC=180            # Zeitspanne für schneller runter in DHW
       - CORE_STARTUP_RAMP_SEC=120               # globaler sanfter Hochlauf
       - CORE_SETPOINT_OFFSET_C=0.0              # Feinversatz Soll
+      - CORE_STEP_HYST_ERR_K=0.15               # Hysterese Fehler (K)
+      - CORE_STEP_HYST_MAX_HZ=1                 # Hysterese Max (Hz)
 
       # PID
       - PID_KP=3.0
