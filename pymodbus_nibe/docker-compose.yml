@@ -34,9 +34,9 @@ services:
 
       # PID
       - PID_KP=3.0
-      - PID_KI=0.015
+      - PID_KI=0.012
       - PID_KD=0.3
-      - PID_AW_TAU_SEC=25
+      - PID_AW_TAU_SEC=20
       - PID_I_CLAMP=25
 
       # Logging
