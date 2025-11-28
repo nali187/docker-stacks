@@ -50,7 +50,7 @@ services:
       - OUTDOORCAP_USE_DHW=1                    # eigene DHW-Kappe
 
       # ---------------- DEFROST ----------------
-      - DEFROST_ENABLE=1                        # Block aktivieren/deaktivieren
+      - DEFROST_ENABLE=0                        # Block aktivieren/deaktivieren
 
       # ---------------- SOLARLOCK ----------------
       - SOLARLOCK_ENABLE=true                   # Block aktivieren/deaktivieren
