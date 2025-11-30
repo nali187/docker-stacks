@@ -18,6 +18,6 @@ services:
       - /sys:/host/sys:ro
       - /etc/os-release:/host/etc/os-release:ro
       - /etc/localtime:/etc/localtime:ro
-      # Uncomment if you want container metrics too:
-      # - /var/run/docker.sock:/var/run/docker.sock:ro
-      #   and add: DOCKER_HOST=unix:///var/run/docker.sock in environment
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      - DOCKER_HOST=unix:///var/run/docker.sock
