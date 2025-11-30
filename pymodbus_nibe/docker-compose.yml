@@ -70,6 +70,8 @@ services:
 
     volumes:
       - /srv/docker/nibe-frequenz-regler:/app
-      - /srv/docker/nibe-frequenz-regler/log:/app/log 
+      - /srv/docker/nibe-frequenz-regler/log:/app/log
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
 
     command: /app/start.sh
