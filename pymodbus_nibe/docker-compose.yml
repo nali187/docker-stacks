@@ -51,6 +51,8 @@ services:
 
       # ---------------- DEFROST ----------------
       - DEFROST_ENABLE=1                        # Block aktivieren/deaktivieren
+      - DEFROST_KP_BOOST_SEC=300                # Zeit für P-Anteil Boost
+      - DEFROST_KP_SCALE=1.5                    # P-Anteil reduziert nach defrost
 
       # ---------------- SOLARLOCK ----------------
       - SOLARLOCK_ENABLE=true                   # Block aktivieren/deaktivieren
