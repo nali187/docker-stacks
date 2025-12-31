@@ -37,7 +37,7 @@ services:
       - PID_KI=0.012
       - PID_KD=0.3
       - PID_AW_TAU_SEC=20
-      - PID_I_CLAMP=30
+      - PID_I_CLAMP=33
 
       # Logging
       - LOG_LEVEL=INFO
