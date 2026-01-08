@@ -52,10 +52,10 @@ services:
       # ---------------- DEFROST ----------------
       - DEFROST_ENABLE=1                        # Block aktivieren/deaktivieren
       - DEFROST_KP_BOOST_SEC=1200               # Zeit für P-Anteil Boost
-      - DEFROST_KP_SCALE=1.3                    # P-Anteil erhöht nach defrost
+      - DEFROST_KP_SCALE=1.0                    # P-Anteil erhöht nach defrost
       - DEFROST_KI_RESET_ON_START=false         # I-Anteil vor defrost resetten
       - DEFROST_KI_RESET_ON_END=false           # I-Anteil nach defrost resetten
-      - DEFROST_KI_RESET_SCALE=0.7              # I-Anteil nach defrost skalieren
+      - DEFROST_KI_RESET_SCALE=1.0              # I-Anteil nach defrost skalieren
 
       # ---------------- SOLARLOCK ----------------
       - SOLARLOCK_ENABLE=true                   # Block aktivieren/deaktivieren
