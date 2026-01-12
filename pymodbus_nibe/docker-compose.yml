@@ -12,7 +12,7 @@ services:
       - CORE_LOOP_INTERVAL_SEC=30               # Regeltakt (s)
 
       - REG_OUTDOOR=1                           # Außentemperatur
-      - REG_FLOW_IST=1478                       # Vorlauf-Ist
+      - REG_FLOW_IST=39                         # Vorlauf-Ist 1478 ;; BT25 39
       - REG_FLOW_SOLL=1017                      # Vorlauf-Soll
       - REG_BUFFER_IST=39                       # Puffer-Ist (alt: REG_BUF_IST)
       - REG_DEFROST_FLAG=1805                   # Defrost-Flag (1/0)
