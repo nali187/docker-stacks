@@ -57,6 +57,13 @@ services:
       - DEFROST_KI_RESET_ON_END=false           # I-Anteil nach defrost resetten
       - DEFROST_KI_RESET_SCALE=1.0              # I-Anteil nach defrost skalieren
 
+      # ---------------- BUFFER ----------------
+      - BUF_ENABLE=true
+      - BUF_TARGET_DELTA_K=2.0
+      - BUF_KP=0.1
+      - BUF_MAX_OFFSET_K=3.0
+      - BUF_DEADBAND_K=0.3
+
       # ---------------- SOLARLOCK ----------------
       - SOLARLOCK_ENABLE=true                   # Block aktivieren/deaktivieren
       - SOLARLOCK_ENGAGE_DELTA_K=5.0            # Engage wenn Buffer > Soll+ΔK
