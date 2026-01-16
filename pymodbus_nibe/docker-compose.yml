@@ -60,7 +60,7 @@ services:
       # ---------------- BUFFER ----------------
       - BUF_ENABLE=true
       - BUF_TARGET_DELTA_K=1.0
-      - BUF_KP=0.1
+      - BUF_KP=0.2
       - BUF_MAX_OFFSET_K=3.0
       - BUF_DEADBAND_K=0.3
 
