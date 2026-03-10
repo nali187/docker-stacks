@@ -12,5 +12,6 @@ services:
 
 networks:
   homelab:
+    external: true
   cloudflared-net:
     external: true
