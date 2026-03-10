@@ -85,3 +85,9 @@ services:
       - /etc/timezone:/etc/timezone:ro
 
     command: /app/start.sh
+    networks:
+      - homelab
+
+networks:
+  homelab:
+    external: true
