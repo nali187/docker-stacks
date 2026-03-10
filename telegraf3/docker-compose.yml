@@ -5,3 +5,9 @@ services:
     volumes:
       - /srv/docker/telegraf3/telegraf.conf:/etc/telegraf/telegraf.conf
     restart: unless-stopped
+    networks:
+      - homelab
+
+networks:
+  homelab:
+    external: true
