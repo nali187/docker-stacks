@@ -14,9 +14,7 @@ services:
       - /srv/docker/grafana/data:/var/lib/grafana
     networks:
       - homelab
-      - cloudflared-net
       
 networks:
   homelab:
-  cloudflared-net:
     external: true
