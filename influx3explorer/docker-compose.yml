@@ -15,3 +15,9 @@ services:
       - /srv/docker/influxdb3/explorer/ca-certs:/ca-certs
       - /srv/docker/influxdb3/explorer/db:/db
     restart: unless-stopped
+    networks:
+      - homelab
+
+networks:
+  homelab:
+    external: true
