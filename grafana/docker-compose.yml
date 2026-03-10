@@ -13,7 +13,6 @@ services:
     volumes:
       - /srv/docker/grafana/data:/var/lib/grafana
     networks:
-      - cloudflared-net
       - homelab
 
 networks:
