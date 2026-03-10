@@ -16,5 +16,5 @@ services:
       - homelab
       
 networks:
-  homelabs:        
+  homelab:        
     external: true
