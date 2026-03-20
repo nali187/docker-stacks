@@ -3,16 +3,15 @@ services:
     image: tsl0922/ttyd
     container_name: ttyd
     restart: unless-stopped
-    command: ttyd -p 7681 chroot /host /bin/bash
+    command: ttyd -p 7681 sh -c "chroot /host /bin/bash"
     ports:
       - "7681:7681"
     stdin_open: true
     tty: true
-    networks:
-      - homelab
-      
     volumes:
       - /:/host
+    networks:
+      - homelab
 
 networks:
   homelab:
