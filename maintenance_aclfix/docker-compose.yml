@@ -19,3 +19,9 @@ services:
       tail -f /dev/null
       "
     restart: unless-stopped
+    networks:
+      - homelab
+
+networks:
+  homelab:
+    external: true

@@ -8,3 +8,9 @@ services:
     volumes:
       - /srv/docker/influxdb2/lib:/var/lib/influxdb2
       - /srv/docker/influxdb2/etc:/etc/influxdb2
+    networks:
+      - homelab
+
+networks:
+  homelab:
+    external: true

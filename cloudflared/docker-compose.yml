@@ -8,8 +8,10 @@ services:
       - TUNNEL_TOKEN=${token}
     networks:
       - cloudflared-net
+      - homelab
 
 networks:
-  monitoring:
+  homelab:
+    external: true
   cloudflared-net:
     external: true
