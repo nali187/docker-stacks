@@ -6,6 +6,7 @@ services:
     volumes:
       - .telegraf3/config:/etc/telegraf
     restart: unless-stopped
+    command: telegraf --config-directory /etc/telegraf
     networks:
       - homelab
 
