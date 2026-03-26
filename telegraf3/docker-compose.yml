@@ -4,7 +4,7 @@ services:
     container_name: telegraf3
  #   command: sleep infinity
     volumes:
-      - ./config:/etc/telegraf
+      - .telegraf3/config:/etc/telegraf
     restart: unless-stopped
     networks:
       - homelab
