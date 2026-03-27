@@ -1,13 +1,39 @@
 services:
+  git-sync:
+    image: alpine/git
+    container_name: telegraf3-git-sync
+    volumes:
+      - telegraf-config:/config
+      - /srv/docker/telegraf3/ssh:/root/.ssh:ro
+    entrypoint: >
+      sh -c "
+      if [ ! -d /config/.git ]; then
+        git clone git@github.com:nali187/docker-stacks.git /config;
+      fi;
+      while true; do
+        cd /config && git pull;
+        sleep 60;
+      done
+      "
+
   telegraf:
     image: telegraf:1.38.1
     container_name: telegraf3
- #   command: sleep infinity
+    depends_on:
+      - git-sync
+    command: >
+      sh -c "
+      while [ ! -f /config/telegraf3/config/telegraf.conf ]; do sleep 2; done;
+      telegraf --config /config/telegraf3/config/telegraf.conf
+      "
     volumes:
-     - /srv/docker/telegraf3/telegraf.conf:/etc/telegraf/telegraf.conf
+      - telegraf-config:/config
     restart: unless-stopped
     networks:
       - homelab
+
+volumes:
+  telegraf-config:
 
 networks:
   homelab:
