@@ -6,7 +6,6 @@ services:
     command: ["--mode=admin"]
     ports:
       - "8888:80"               # UI → http://<your-pi-ip>:8888
-    user: "1000:1000"
     environment:
       # Use a long random string. Example (run on host): openssl rand -hex 32
       SESSION_SECRET_KEY: ${key}
