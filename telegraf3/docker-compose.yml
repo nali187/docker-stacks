@@ -24,6 +24,7 @@ services:
       - /srv/docker/telegraf3/ssh:/root/.ssh:ro
     entrypoint: >
       sh -c "
+      git config --global --add safe.directory /config;
       while true; do
         if [ ! -d /config/.git ]; then
           echo 'Cloning repo...';
