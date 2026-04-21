@@ -2,18 +2,14 @@ services:
   influxdb3-explorer:
     image: influxdata/influxdb3-ui:latest
     container_name: influxdb3-explorer
-    # Admin mode (full UI). Omit the command for read-only Query mode.
     command: ["--mode=admin"]
     ports:
-      - "8888:80"               # UI → http://<your-pi-ip>:8888
+      - "8888:80"
     environment:
-      # Use a long random string. Example (run on host): openssl rand -hex 32
       SESSION_SECRET_KEY: ${key}
     volumes:
       - /srv/docker/influxdb3/explorer/config:/app-root/config
       - /srv/docker/influxdb3/explorer/ssl:/etc/nginx/ssl
-      - /srv/docker/influxdb3/explorer/nginx-logs:/var/lib/nginx/logs
-      - /srv/docker/influxdb3/explorer/nginx/nginx.conf:/app-root/nginx.conf
       - /srv/docker/influxdb3/explorer/ca-certs:/ca-certs
       - /srv/docker/influxdb3/explorer/db:/db
     restart: unless-stopped
