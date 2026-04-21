@@ -16,31 +16,33 @@ services:
       - homelab
 
   git-sync:
-    image: alpine/git
-    container_name: telegraf3-git-sync
-    user: "1000:1000"
-    environment:
-      - HOME=/tmp
-      - GIT_SSH_COMMAND=ssh -i /ssh/id_ed25519 -o StrictHostKeyChecking=no
-    volumes:
-      - telegraf-config:/config
-      - /srv/docker/telegraf3/ssh:/ssh:ro
-    entrypoint: >
-      sh -c "
-      mkdir -p /tmp &&
-      while true; do
-        if [ ! -d /config/.git ]; then
-          echo 'Cloning repo...';
-          rm -rf /config/*;
-          git clone git@github.com:nali187/docker-stacks.git /config || sleep 5;
-        else
-          echo 'Pulling updates...';
-          cd /config && git pull || rm -rf /config/.git;
-        fi;
-        sleep 60;
-      done
-      "
-    restart: unless-stopped
+   image: alpine/git
+   container_name: telegraf3-git-sync
+   user: "1000:1000"
+   environment:
+     - HOME=/home/git
+     - GIT_SSH_COMMAND=ssh -i /ssh/id_ed25519 -o StrictHostKeyChecking=no
+   volumes:
+     - telegraf-config:/config
+     - /srv/docker/telegraf3/ssh:/ssh:ro
+   entrypoint: >
+     sh -c "
+     adduser -D -u 1000 git &&
+     mkdir -p /home/git &&
+     chown -R 1000:1000 /home/git &&
+     while true; do
+       if [ ! -d /config/.git ]; then
+         echo 'Cloning repo...';
+         rm -rf /config/*;
+         git clone git@github.com:nali187/docker-stacks.git /config || sleep 5;
+       else
+         echo 'Pulling updates...';
+         cd /config && git pull || rm -rf /config/.git;
+       fi;
+       sleep 60;
+     done
+     "
+   restart: unless-stopped
 
 volumes:
   telegraf-config:
