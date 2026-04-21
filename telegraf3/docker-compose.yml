@@ -15,21 +15,15 @@ services:
     networks:
       - homelab
 
-  git-sync:
+ git-sync:
    image: alpine/git
    container_name: telegraf3-git-sync
-   user: "1000:1000"
-   environment:
-     - HOME=/home/git
-     - GIT_SSH_COMMAND=ssh -i /ssh/id_ed25519 -o StrictHostKeyChecking=no
+   user: "0:0"
    volumes:
      - telegraf-config:/config
-     - /srv/docker/telegraf3/ssh:/ssh:ro
+     - /srv/docker/telegraf3/ssh:/root/.ssh:ro
    entrypoint: >
      sh -c "
-     adduser -D -u 1000 git &&
-     mkdir -p /home/git &&
-     chown -R 1000:1000 /home/git &&
      while true; do
        if [ ! -d /config/.git ]; then
          echo 'Cloning repo...';
@@ -39,9 +33,12 @@ services:
          echo 'Pulling updates...';
          cd /config && git pull || rm -rf /config/.git;
        fi;
+       chmod -R 755 /config;
+       chown -R 1000:1000 /config;
        sleep 60;
      done
      "
+    
    restart: unless-stopped
 
 volumes:
