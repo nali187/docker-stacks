@@ -18,7 +18,7 @@ services:
   git-sync:
     image: alpine/git
     container_name: telegraf3-git-sync
-    user: "1000:1000"   # 👈 läuft als root
+    user: "0:0"   # 👈 läuft als root
     volumes:
       - telegraf-config:/config
       - /srv/docker/telegraf3/ssh:/root/.ssh:ro
