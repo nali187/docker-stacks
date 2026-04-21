@@ -10,7 +10,7 @@ services:
       --config /config/telegraf3/config/telegraf.conf
       --config-directory /config/telegraf3/config/telegraf.d
     volumes:
-      - telegraf-config:/config
+      - telegraf-config:/config:ro   # 🔥 readonly!
     restart: unless-stopped
     networks:
       - homelab
@@ -18,12 +18,16 @@ services:
   git-sync:
     image: alpine/git
     container_name: telegraf3-git-sync
-    user: "0:0"
+    user: "1000:1000"
+    environment:
+      - HOME=/tmp
+      - GIT_SSH_COMMAND=ssh -i /ssh/id_ed25519 -o StrictHostKeyChecking=no
     volumes:
       - telegraf-config:/config
-      - /srv/docker/telegraf3/ssh:/root/.ssh:ro
+      - /srv/docker/telegraf3/ssh:/ssh:ro
     entrypoint: >
       sh -c "
+      mkdir -p /tmp &&
       while true; do
         if [ ! -d /config/.git ]; then
           echo 'Cloning repo...';
@@ -36,6 +40,7 @@ services:
         sleep 60;
       done
       "
+    restart: unless-stopped
 
 volumes:
   telegraf-config:
