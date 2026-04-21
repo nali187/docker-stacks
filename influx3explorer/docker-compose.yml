@@ -2,10 +2,11 @@ services:
   influxdb3-explorer:
     image: influxdata/influxdb3-ui:latest
     container_name: influxdb3-explorer
- #   user: "0:0" 
+    user: "0:0"
     command: ["--mode=admin"]
     ports:
-      - "8888:8080"
+      - "8888:80"     # 👈 UI
+      - "8889:8888"   # 👈 API
     environment:
       SESSION_SECRET_KEY: ${key}
     volumes:
@@ -16,7 +17,7 @@ services:
     restart: unless-stopped
     networks:
       - homelab
-
+      
 networks:
   homelab:
     external: true
