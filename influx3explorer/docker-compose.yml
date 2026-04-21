@@ -12,6 +12,7 @@ services:
     volumes:
       - /srv/docker/influxdb3/explorer/config:/app-root/config
       - /srv/docker/influxdb3/explorer/ssl:/etc/nginx/ssl
+      - /srv/docker/influxdb3/explorer/nginx-logs:/var/lib/nginx/logs
       - /srv/docker/influxdb3/explorer/ca-certs:/ca-certs
       - /srv/docker/influxdb3/explorer/db:/db
     restart: unless-stopped
