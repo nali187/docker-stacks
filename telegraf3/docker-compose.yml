@@ -10,7 +10,7 @@ services:
       --config /config/telegraf3/config/telegraf.conf
       --config-directory /config/telegraf3/config/telegraf.d
     volumes:
-      - telegraf-config:/config:ro   # 🔥 readonly!
+      - telegraf-config:/config:ro   # 👈 readonly für Sicherheit
     restart: unless-stopped
     networks:
       - homelab
@@ -18,7 +18,7 @@ services:
   git-sync:
     image: alpine/git
     container_name: telegraf3-git-sync
-    user: "0:0"
+    user: "0:0"   # 👈 läuft als root
     volumes:
       - telegraf-config:/config
       - /srv/docker/telegraf3/ssh:/root/.ssh:ro
@@ -33,13 +33,15 @@ services:
           echo 'Pulling updates...';
           cd /config && git pull || rm -rf /config/.git;
         fi;
-        chmod -R 755 /config;
+
+        echo 'Fixing permissions...';
         chown -R 1000:1000 /config;
+        chmod -R 755 /config;
+
         sleep 60;
       done
       "
-    
-   restart: unless-stopped
+    restart: unless-stopped
 
 volumes:
   telegraf-config:
