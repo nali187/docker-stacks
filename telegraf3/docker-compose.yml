@@ -15,29 +15,29 @@ services:
     networks:
       - homelab
 
- git-sync:
-   image: alpine/git
-   container_name: telegraf3-git-sync
-   user: "0:0"
-   volumes:
-     - telegraf-config:/config
-     - /srv/docker/telegraf3/ssh:/root/.ssh:ro
-   entrypoint: >
-     sh -c "
-     while true; do
-       if [ ! -d /config/.git ]; then
-         echo 'Cloning repo...';
-         rm -rf /config/*;
-         git clone git@github.com:nali187/docker-stacks.git /config || sleep 5;
-       else
-         echo 'Pulling updates...';
-         cd /config && git pull || rm -rf /config/.git;
-       fi;
-       chmod -R 755 /config;
-       chown -R 1000:1000 /config;
-       sleep 60;
-     done
-     "
+  git-sync:
+    image: alpine/git
+    container_name: telegraf3-git-sync
+    user: "0:0"
+    volumes:
+      - telegraf-config:/config
+      - /srv/docker/telegraf3/ssh:/root/.ssh:ro
+    entrypoint: >
+      sh -c "
+      while true; do
+        if [ ! -d /config/.git ]; then
+          echo 'Cloning repo...';
+          rm -rf /config/*;
+          git clone git@github.com:nali187/docker-stacks.git /config || sleep 5;
+        else
+          echo 'Pulling updates...';
+          cd /config && git pull || rm -rf /config/.git;
+        fi;
+        chmod -R 755 /config;
+        chown -R 1000:1000 /config;
+        sleep 60;
+      done
+      "
     
    restart: unless-stopped
 
