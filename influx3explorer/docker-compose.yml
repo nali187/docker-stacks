@@ -2,7 +2,7 @@ services:
   influxdb3-explorer:
     image: influxdata/influxdb3-ui:latest
     container_name: influxdb3-explorer
-    user: "0:0"
+#    user: "0:0"
     command: ["--mode=admin"]
     ports:
       - "8888:80"     # 👈 UI
