@@ -2,6 +2,10 @@ services:
   telegraf:
     image: telegraf:1.36.3
     container_name: telegraf
+    environment:
+     - INFLUXDB_TOKEN=${INFLUXDB_TOKEN}
+     - CMI_USERNAME=${CMI_USERNAME}
+     - CMI_PASSWORD=${CMI_PASSWORD}
     volumes:
      - /srv/docker/telegraf/telegraf.conf:/etc/telegraf/telegraf.conf
     restart: unless-stopped
