@@ -2,51 +2,16 @@ services:
   telegraf:
     image: telegraf:1.39.1
     container_name: telegraf3
-    user: "1000:1000"
-    depends_on:
-      - git-sync
     command: >
       telegraf
-      --config /config/telegraf3/config/telegraf.conf
-      --config-directory /config/telegraf3/config/telegraf.d
+      --config /etc/telegraf/telegraf.conf
+      --config-directory /etc/telegraf/telegraf.d
     volumes:
-      - telegraf-config:/config:ro   # 👈 readonly für Sicherheit
+      - ./telegraf.conf:/etc/telegraf/telegraf.conf:ro
+      - ./telegraf.d:/etc/telegraf/telegraf.d:ro
     restart: unless-stopped
     networks:
       - homelab
-
-  git-sync:
-    image: alpine/git
-    container_name: telegraf3-git-sync
-    user: "0:0"   # 👈 läuft als root
-    volumes:
-      - telegraf-config:/config
-      - /srv/docker/telegraf3/ssh:/root/.ssh:ro
-    entrypoint: >
-      sh -c "
-      git config --global --add safe.directory /config;
-      while true; do
-        if [ ! -d /config/.git ]; then
-          echo 'Cloning repo...';
-          rm -rf /config/*;
-          git clone git@github.com:nali187/docker-stacks.git /config || sleep 5;
-        else
-          echo 'Pulling updates...';
-          cd /config && git pull || rm -rf /config/.git;
-        fi;
-
-        echo 'Fixing permissions...';
-        chown -R 1000:1000 /config;
-        chmod -R 755 /config;
-
-        sleep 60;
-      done
-      "
-    restart: unless-stopped
-
-volumes:
-  telegraf-config:
-
 networks:
   homelab:
     external: true
