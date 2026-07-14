@@ -9,6 +9,10 @@ services:
     volumes:
       - ./telegraf.conf:/etc/telegraf/telegraf.conf:ro
       - ./telegraf.d:/etc/telegraf/telegraf.d:ro
+    environment:
+      INFLUXDB3_TOKEN: "${INFLUXDB3_TOKEN}"
+      CMI_USERNAME: "${CMI_USERNAME}"
+      CMI_PASSWORD: "${CMI_PASSWORD}"
     restart: unless-stopped
     networks:
       - homelab
