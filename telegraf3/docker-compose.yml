@@ -1,6 +1,6 @@
 services:
   telegraf:
-    image: telegraf:1.38.1
+    image: telegraf:1.39.1
     container_name: telegraf3
     user: "1000:1000"
     depends_on:
