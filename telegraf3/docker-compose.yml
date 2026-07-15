@@ -4,6 +4,7 @@ services:
     container_name: telegraf3
     command: >
       telegraf
+      --debug
       --config /etc/telegraf/telegraf.conf
       --config-directory /etc/telegraf/telegraf.d
     volumes:
