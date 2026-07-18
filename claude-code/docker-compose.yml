@@ -1,0 +1,29 @@
+name: claude-code
+
+services:
+  claude-code:
+    build: .
+    container_name: claude-code
+    stdin_open: true
+    tty: true
+    volumes:
+      # Persistiert Login/Konfiguration UND MCP-Registrierungen ueber Redeploys
+      # hinweg - ohne CLAUDE_CONFIG_DIR wuerde die MCP-Registrierung (naechster
+      # Schritt) teilweise ausserhalb dieses Volumes landen und beim naechsten
+      # Redeploy verloren gehen.
+      - claude-config:/root/.claude
+    environment:
+      CLAUDE_CODE_OAUTH_TOKEN: "${CLAUDE_CODE_OAUTH_TOKEN}"
+      CLAUDE_CONFIG_DIR: /root/.claude
+      GRAFANA_SERVICE_ACCOUNT_TOKEN: "${GRAFANA_SERVICE_ACCOUNT_TOKEN}"
+      INFLUXDB_MCP_TOKEN: "${INFLUXDB_MCP_TOKEN}"
+    restart: unless-stopped
+    networks:
+      - homelab
+
+networks:
+  homelab:
+    external: true
+
+volumes:
+  claude-config:
