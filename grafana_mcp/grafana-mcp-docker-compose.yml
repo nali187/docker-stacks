@@ -1,0 +1,22 @@
+name: grafana-mcp
+
+services:
+  grafana-mcp:
+    image: mcp/grafana
+    container_name: grafana-mcp
+    # Offizielles Image startet standardmaessig im SSE-Modus - wir nutzen
+    # bewusst streamable-http (moderner, zustandslos, empfohlen fuer neue
+    # Setups). Kein Port-Publish noetig: nur andere Container im
+    # "homelab"-Netzwerk (z.B. claude-code) muessen ihn erreichen, nicht
+    # dein LAN von aussen.
+    command: ["-t", "streamable-http", "-addr", ":8000"]
+    environment:
+      GRAFANA_URL: "http://grafana:3000"
+      GRAFANA_SERVICE_ACCOUNT_TOKEN: "${GRAFANA_SERVICE_ACCOUNT_TOKEN}"
+    restart: unless-stopped
+    networks:
+      - homelab
+
+networks:
+  homelab:
+    external: true
