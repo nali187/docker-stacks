@@ -9,7 +9,13 @@ services:
     # Setups). Kein Port-Publish noetig: nur andere Container im
     # "homelab"-Netzwerk (z.B. claude-code) muessen ihn erreichen, nicht
     # dein LAN von aussen.
-    command: ["-t", "streamable-http", "-address", ":8000"]
+    # -allowed-hosts explizit gesetzt: der Server validiert den Host-Header
+    # gegen DNS-Rebinding-Angriffe und faellt sonst nur auf Loopback-Varianten
+    # von -address zurueck (localhost:8000) - nicht auf den Docker-Netzwerk-
+    # namen, ueber den Clients (z.B. claude-code) ihn tatsaechlich erreichen.
+    # "*" waere bequemer, deaktiviert den Schutz aber komplett - hier bewusst
+    # nur die konkret erwarteten Hosts erlaubt.
+    command: ["-t", "streamable-http", "-address", ":8000", "-allowed-hosts", "grafana-mcp:8000,localhost:8000"]
     environment:
       GRAFANA_URL: "http://grafana:3000"
       GRAFANA_SERVICE_ACCOUNT_TOKEN: "${GRAFANA_SERVICE_ACCOUNT_TOKEN}"
