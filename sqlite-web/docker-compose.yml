@@ -1,0 +1,16 @@
+services:
+  sqlite-web:
+    image: ghcr.io/coleifer/sqlite-web:latest
+    container_name: sqlite-web
+    command: sqlite_web --no-browser -H 0.0.0.0 -x /data/cashflow.sqlite
+    ports:
+      - "8085:8080"
+    volumes:
+      - /srv/docker/sqlite-web/data:/data
+    restart: unless-stopped
+    networks:
+      - homelab
+
+networks:
+  homelab:
+    external: true
